@@ -4,7 +4,7 @@ set -eu
 
 module load StdEnv/2020 apptainer/1.1.8
 
-CONTAINER_DIR=$SCRATCH/containers
+CONTAINER_DIR=$PROJECT/containers
 
 # # Check if the correct number of arguments is provided
 # if [ "$#" -ne 2 ]; then
