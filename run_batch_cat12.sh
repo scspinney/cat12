@@ -31,9 +31,9 @@ array_job_id1=$(sbatch --array=0-`expr ${#subject_numbers[@]} - 1`%100 \
        --mem=65G \
        --cpus-per-task=8 \
        --time=8:00:00 \
-       --output="/home/spinney/scratch/neuroventure/raw/tmp/output/cat12_%A_%a.out" \
-       --error="/home/spinney/scratch/neuroventure/raw/tmp/error/cat12_%A_%a.err" \
-       /home/spinney/project/spinney/neuroimaging-preprocessing/src/models/cat12/run_cat12.sh ${DATASET_DIR} ${subject_numbers[@]})
+       --output="${SCRATCH}/neuroventure/raw/tmp/output/cat12_%A_%a.out" \
+       --error="${SCRATCH}/neuroventure/raw/tmp/error/cat12_%A_%a.err" \
+       ${PROJECT}/neuroimaging-preprocessing/src/models/cat12/run_cat12.sh ${DATASET_DIR} ${subject_numbers[@]})
 
 job_number=$(echo $array_job_id1 | awk '{print $NF}')
 
@@ -42,7 +42,7 @@ array_job_id2=$(sbatch --dependency=afterok:${job_number} \
        --mem=8G \
        --cpus-per-task=4 \
        --time=2:00:00 \
-       --output="/home/spinney/scratch/neuroventure/raw/tmp/output/combinecat12.out" \
-       --error="/home/spinney/scratch/neuroventure/raw/tmp/error/combinecat12.err" \
-       /home/spinney/project/spinney/neuroimaging-preprocessing/src/models/cat12/run_combine_reports.sh ${CONTAINER_WORK_DIR})
+       --output="${SCRATCH}/neuroventure/raw/tmp/output/combinecat12.out" \
+       --error="${SCRATCH}/neuroventure/raw/tmp/error/combinecat12.err" \
+       ${PROJECT}/neuroimaging-preprocessing/src/models/cat12/run_combine_reports.sh ${CONTAINER_WORK_DIR})
 
