@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the path to your BIDS dataset directory
-DATASET_DIR=/home/spinney/project/data/neuroventure/bids
+DATASET_DIR=$SCRATCH/data/neuroventure/bids
 
 # Specify the path to the container's working directory
 CONTAINER_WORK_DIR=$SCRATCH/cat12tmp/CAT12.8.2
